@@ -1,0 +1,74 @@
+.content {
+	// 全局盒子设置
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding-top: 100rpx;
+	width: 100vw;
+	height: 100vh;
+	background-color: #daead4;
+	
+	// 头像输入框设置
+	.avatorWrapper {
+		width: 250rpx;
+		height: 250rpx;
+		border-radius: 50%;
+		overflow: hidden;
+		
+		image {
+			width: 100%;
+		}
+	}
+	
+	// 表单输入框设置
+	.form {
+		width: 75vw;
+		margin-top: 50rpx;
+		.inputWrapper {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin-top: 50rpx;
+			
+			.inputTip {
+				width: 33%;
+				
+				text {
+					font-size: 33rpx;
+				}
+			}
+			
+			.input {
+				flex: 1;
+				.baseInput {
+					width: 100%;
+					height: 80rpx;
+					background: white;
+					font-size: 30rpx;
+					text-align: center;
+					border-radius: 30rpx;
+					border: 0;
+					outline: 0;
+				}
+			}
+			
+		}
+	}
+	
+	// 登入按钮
+	.btn {
+		margin-top: 75rpx;
+		width: 100%;
+		height: 90rpx;
+		line-height: 90rpx;
+		background: #009900;
+		text-align: center;
+		font-size: 35rpx;
+		color: aliceblue;
+		border-radius: 50rpx;
+	}
+}
+
+
+
+

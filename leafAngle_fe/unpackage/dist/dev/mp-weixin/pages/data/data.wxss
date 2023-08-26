@@ -1,0 +1,30 @@
+.container {
+  padding: 20px;
+  font-size: 14px;
+  line-height: 24px;
+}
+.export {
+  display: flex;
+  padding: 20rpx 30rpx;
+}
+.export .export_options {
+  display: flex;
+}
+.export .export_count {
+  color: #555;
+  font-size: 28rpx;
+}
+.uni-group {
+  display: flex;
+  justify-content: space-around;
+}
+.control {
+  display: flex;
+}
+.control .control_item {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+

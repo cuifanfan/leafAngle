@@ -1,0 +1,17 @@
+{
+  "0": "regist successfully.",
+  "1": "regist again",
+  "2": "not regist",
+  "3": "wrong password",
+  "4": "login successfully",
+  "5": "checkCode sent",
+  "6": "fail to send checkCode",
+  "7": "wrong checkCode",
+  "8": "userInfo sent",
+  "9": "userInfo updated",
+  "10": "fail to update userInfo",
+  "11": "fail to update password",
+  "12": "password updated",
+  "13": "file path sent",
+  "14": "angle data sent"
+}

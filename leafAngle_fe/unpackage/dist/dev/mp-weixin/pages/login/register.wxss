@@ -1,0 +1,69 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 100rpx;
+  width: 100vw;
+  height: 100vh;
+  background-color: #daead4;
+}
+.content .avatorWrapper {
+  width: 250rpx;
+  height: 250rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.content .avatorWrapper image {
+  width: 100%;
+}
+.content .form {
+  width: 75vw;
+  margin-top: 50rpx;
+}
+.content .form .inputWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 50rpx;
+}
+.content .form .inputWrapper .inputTip {
+  width: 33%;
+}
+.content .form .inputWrapper .inputTip text {
+  font-size: 33rpx;
+}
+.content .form .inputWrapper .input {
+  flex: 1;
+}
+.content .form .inputWrapper .input .baseInput {
+  width: 100%;
+  height: 80rpx;
+  background: white;
+  font-size: 30rpx;
+  text-align: center;
+  border-radius: 30rpx;
+  border: 0;
+  outline: 0;
+}
+.content .btn {
+  margin-top: 75rpx;
+  width: 100%;
+  height: 90rpx;
+  line-height: 90rpx;
+  background: #009900;
+  text-align: center;
+  font-size: 35rpx;
+  color: aliceblue;
+  border-radius: 50rpx;
+}
+.input {
+  position: relative;
+}
+.input .seconds {
+  position: absolute;
+  top: 0;
+  right: 4%;
+  padding: 20rpx 30rpx;
+  color: #888;
+}
+

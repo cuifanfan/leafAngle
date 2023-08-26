@@ -1,0 +1,60 @@
+{
+    "pages": [
+        "pages/login/login",
+        "pages/login/register",
+        "pages/login/lost",
+        "pages/tabbar/angle/angle",
+        "pages/tabbar/sap/sap",
+        "pages/tabbar/record/record",
+        "pages/tabbar/user/user",
+        "pages/data/data",
+        "pages/userInfo/userInfo",
+        "pages/setting/setting"
+    ],
+    "subPackages": [],
+    "window": {
+        "navigationBarTextStyle": "black",
+        "navigationBarTitleText": "玉米叶夹角测量系统",
+        "navigationBarBackgroundColor": "#F8F8F8",
+        "backgroundColor": "#F8F8F8"
+    },
+    "tabBar": {
+        "borderStyle": "black",
+        "backgroundColor": "#fff",
+        "color": "#666",
+        "selectedColor": "#1aad19",
+        "list": [
+            {
+                "pagePath": "pages/tabbar/angle/angle",
+                "selectedIconPath": "static/img/tabbar/leaf.png",
+                "iconPath": "static/img/tabbar/leaf-gray.png",
+                "text": "角度预测"
+            },
+            {
+                "pagePath": "pages/tabbar/record/record",
+                "selectedIconPath": "static/img/tabbar/measure.png",
+                "iconPath": "static/img/tabbar/measure-gray.png",
+                "text": "测量记录"
+            },
+            {
+                "pagePath": "pages/tabbar/sap/sap",
+                "selectedIconPath": "static/img/tabbar/tubiao.png",
+                "iconPath": "static/img/tabbar/tubiao-gray.png",
+                "text": "数据可视化"
+            },
+            {
+                "pagePath": "pages/tabbar/user/user",
+                "selectedIconPath": "static/img/tabbar/me.png",
+                "iconPath": "static/img/tabbar/me-gray.png",
+                "text": "我的"
+            }
+        ]
+    },
+    "permission": {
+        "scope.userLocation": {
+            "desc": ""
+        }
+    },
+    "usingComponents": {},
+    "sitemapLocation": "sitemap.json"
+}

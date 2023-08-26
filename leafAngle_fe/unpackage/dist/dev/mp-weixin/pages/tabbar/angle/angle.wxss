@@ -1,0 +1,39 @@
+.content {
+  margin-top: 20rpx;
+  padding: 40rpx;
+  font-size: 35rpx;
+}
+.content .img_test {
+  display: flex;
+  justify-content: space-around;
+  border: 2rpx dashed green;
+  height: 500rpx;
+  line-height: 500rpx;
+}
+.content .img_test .img_select {
+  width: 50%;
+  text-align: center;
+  border-right: 1rpx dashed green;
+}
+.content .img_test .img_answer {
+  width: 50%;
+}
+.content .img_test image {
+  width: 94%;
+  margin: 10rpx;
+}
+.content .control_menu {
+  display: flex;
+  padding: 45rpx 10rpx 30rpx;
+}
+.content .test_answer {
+  text-align: center;
+  padding: 20rpx 0;
+}
+.content .num_answer {
+  color: red;
+}
+.content .mini-btn {
+  background-color: #5fb585;
+}
+

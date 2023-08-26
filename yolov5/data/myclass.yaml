@@ -1,0 +1,8 @@
+train: D:/FlFile/yolov5-6.1/paper_data/train.txt
+val:  D:/FlFile/yolov5-6.1/paper_data/val.txt
+test: D:/FlFile/yolov5-6.1/paper_data/test.txt
+# number of classes
+nc: 2
+
+# class names
+names:  ['crack','fracturing']

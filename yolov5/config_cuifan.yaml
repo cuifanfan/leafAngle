@@ -1,0 +1,97 @@
+nc: 3  # 类别数量
+depth_multiple: 0.33  # 控制子模块数量=int(number*depth)
+width_multiple: 0.50  # 控制卷积核的数量=int(number*width)
+anchors:
+  - [10,13, 16,30, 33,23]  # P3/8，检测小目标，10,13是一组尺寸，总共三组检测小目标
+  - [30,61, 62,45, 59,119]  # P4/16，检测中目标，共三组
+  - [116,90, 156,198, 373,326]  # P5/32，检测大目标，共三组
+backbone:
+  # [from, number, module, args]
+  # from: 输入来自那一层，-1代表上一次，1代表第1层，3代表第3层,
+  # number: 模块的数量，最终数量需要乘width，然后四舍五入取整，如果小于1，取1。
+  # module：子模块
+  # args：模块参数，channel，kernel_size，stride，padding，bias等
+
+  # Focus: 对特征图进行切片操作，[64,3]得到[3,32,3]，即输入channel=3（RGB），
+  # 输出为640.5(width_multiple)=32，3为卷积核尺寸
+  # BottleNeckCSP：借鉴CSPNet网络，由3个卷积层和X个残差模块Concat组成，
+  # 若有False，则没有残差模块，那么组成结构为nn.conv+Bn+Leaky_ReLu
+  [[-1, 1, Focus, [64, 3]],
+   # 输入来自上一层，模块数量为1个，子模块为Conv，网络中最终有1280.5=32个卷积核，卷积核尺寸为3，stride=2
+   [-1, 1, Conv, [128, 3, 2]],
+   [-1, 3, C3, [128]],
+   [-1, 1, Conv, [256, 3, 2]],
+   [-1, 9, C3, [256]],
+   [-1, 1, Conv, [512, 3, 2]],
+   [-1, 9, C3, [512]],
+   [-1, 1, Conv, [1024, 3, 2]],
+   # 5×5，9×9，13×13的最大池化方式，进行多尺度融合。
+   [-1, 1, SPP, [1024, [5, 9, 13]]],
+   [-1, 3, C3, [1024, False]],
+  ]
+
+head:
+  [[-1, 1, Conv, [512, 1, 1]],
+   [-1, 1, nn.Upsample, [None, 2, 'nearest']],  # 上采样
+   [[-1, 6], 1, Concat, [1]],  # cat backbone P4  代表concat上一层和第6层
+   [-1, 3, C3, [512, False]],  # 13  说明该层是第13层网络
+
+   [-1, 1, Conv, [256, 1, 1]],
+   [-1, 1, nn.Upsample, [None, 2, 'nearest']],
+   [[-1, 4], 1, Concat, [1]],  # cat backbone P3
+   [-1, 3, C3, [256, False]],  # 17 (P3/8-small)
+
+   [-1, 1, Conv, [256, 3, 2]],
+   [[-1, 14], 1, Concat, [1]],  # cat head P4
+   [-1, 3, C3, [512, False]],  # 20 (P4/16-medium)
+
+   [-1, 1, Conv, [512, 3, 2]],
+   [[-1, 10], 1, Concat, [1]],  # cat head P5
+   [-1, 3, C3, [1024, False]],  # 23 (P5/32-large)
+   # Detect(P3, P4, P5)，[17, 20, 23]说明输入来自第17,20,23层
+   [[17, 20, 23], 1, Detect, [nc, anchors]],
+
+lr0: 0.01  # 初始学习率 (SGD=1E-2, Adam=1E-3)
+lrf: 0.2  # 循环学习率 (lr0 * lrf)
+momentum: 0.937  # SGD momentum/Adam beta1 学习率动量
+weight_decay: 0.0005  # 权重衰减系数
+warmup_epochs: 3.0  # 预热学习 (fractions ok)
+warmup_momentum: 0.8  # 预热学习动量
+warmup_bias_lr: 0.1  # 预热初始学习率
+box: 0.05  # iou损失系数
+cls: 0.5  # cls损失系数
+cls_pw: 1.0  # cls BCELoss正样本权重
+obj: 1.0  # 有无物体系数(scale with pixels)
+obj_pw: 1.0  # 有无物体BCELoss正样本权重
+iou_t: 0.20  # IoU训练时的阈值
+anchor_t: 4.0  # anchor的长宽比（长:宽 = 4:1）
+# anchors: 3  # 每个输出层的anchors数量(0 to ignore)
+#以下系数是数据增强系数，包括颜色空间和图片空间
+fl_gamma: 0.0  # focal loss gamma (efficientDet default gamma=1.5)
+hsv_h: 0.015  # 色调 (fraction)
+hsv_s: 0.7  # 饱和度 (fraction)
+hsv_v: 0.4  # 亮度 (fraction)
+degrees: 0.0  # 旋转角度 (+/- deg)
+translate: 0.1  # 平移(+/- fraction)
+scale: 0.5  # 图像缩放 (+/- gain)
+shear: 0.0  # 图像剪切 (+/- deg)
+perspective: 0.0  # 透明度 (+/- fraction), range 0-0.001
+flipud: 0.0  # 进行上下翻转概率 (probability)
+fliplr: 0.5  # 进行左右翻转概率 (probability)
+mosaic: 1.0  # 进行Mosaic概率 (probability)
+mixup: 0.0  # 进行图像混叠概率（即，多张图像重叠在一起） (probability)
+
+
+train: ../train/images
+val: ../val/images
+nc: 2
+names: ['class1', 'class2']
+img_size: 416
+batch_size: 16
+# data augmentation
+augment:
+  - Flip
+  - HSV
+  - RandomScaleCrop
+  - RandomTranslate
+  - RandomRotate

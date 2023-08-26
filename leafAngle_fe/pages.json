@@ -1,0 +1,97 @@
+{
+	"pages": [
+		//pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarTitleText": "玉米叶夹角测量系统"
+			}
+		},
+		{
+			"path": "pages/login/register",
+			"style": {
+				"navigationBarTitleText": "注册"
+			}
+		},
+		{
+			"path": "pages/login/lost",
+			"style": {
+				"navigationBarTitleText": "找回密码"
+			}
+		},
+		{
+			"path": "pages/tabbar/angle/angle",
+			"style": {
+				"navigationBarTitleText": "玉米叶夹角测量系统"
+			}
+		},
+		{
+			"path": "pages/tabbar/sap/sap",
+			"style": {}
+		},
+		{
+			"path": "pages/tabbar/record/record"
+		},
+		{
+			"path": "pages/tabbar/user/user",
+			"style": {}
+		},
+		{
+			"path": "pages/data/data",
+			"style": {
+				"navigationBarTitleText": "数据管理"
+			}
+		},
+		{
+			"path": "pages/userInfo/userInfo",
+			"style": {
+				"navigationBarTitleText": "信息修改"
+			}
+		},
+		{
+			"path": "pages/setting/setting",
+			"style": {
+				"navigationBarTitleText": "设置"
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "玉米叶夹角测量系统",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar": {
+		"borderStyle": "black",
+		"backgroundColor": "#fff",
+		"color": "#666",
+		"selectedColor": "#1aad19",
+		"list": [{
+				"pagePath": "pages/tabbar/angle/angle",
+				"selectedIconPath": "static/img/tabbar/leaf.png",
+				"iconPath": "static/img/tabbar/leaf-gray.png",
+				"text": "角度预测"
+			},
+			{
+				"pagePath": "pages/tabbar/record/record",
+				"selectedIconPath": "static/img/tabbar/measure.png",
+				"iconPath": "static/img/tabbar/measure-gray.png",
+				"text": "测量记录"
+			},
+			{
+				"pagePath": "pages/tabbar/sap/sap",
+				"selectedIconPath": "static/img/tabbar/tubiao.png",
+				"iconPath": "static/img/tabbar/tubiao-gray.png",
+				"text": "数据可视化"
+			},
+
+
+			{
+				"pagePath": "pages/tabbar/user/user",
+				"selectedIconPath": "static/img/tabbar/me.png",
+				"iconPath": "static/img/tabbar/me-gray.png",
+				"text": "我的"
+			}
+		]
+	}
+}
